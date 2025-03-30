@@ -1,7 +1,3 @@
-Here's the updated README file with your additional information about the bonus task and technology stack:
-
----
-
 # Crime Map Web Application
 
 This repository is a solution for the Machine Learning Codestacker Challenge. It consists of two main parts:
