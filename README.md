@@ -1,7 +1,13 @@
-
 # Crime Map Web Application
 
-This repository contains the Crime Map web application, which is designed to provide insights into crime data using a user-friendly interface. The application is containerized using Docker for easy deployment and scalability.
+This repository is a solution for the Machine Learning Codestacker Challenge. It consists of two main parts:
+
+1. **Level 1 & 2**: This part contains data analysis and model training.
+2. **WebUI **: This part includes an interactive geospatial map that displays crimes and a small program that extracts police reports and predicts the crime category.
+
+Additionally, I have completed Part A of the bonus task, which involves dockerizing and containerizing the application for easy deployment.
+
+Here is how to run the application:
 
 ## Prerequisites
 
@@ -61,3 +67,8 @@ You should now see the Crime Map web application interface.
 
 - **Docker Not Running**: Ensure Docker is running on your device before executing the build scripts.
 - **Database Initialization**: If the application does not load, wait a few more minutes for the database to initialize, then refresh your browser.
+
+
+## Incomplete Features
+
+Please note that the integration of severity with the category prediction is currently incomplete. This feature is documented in the Jupyter notebook, but due to time constraints, it was not fully implemented or reviewed in the web application.
