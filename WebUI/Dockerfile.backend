@@ -1,0 +1,29 @@
+FROM python:3.10-slim
+
+WORKDIR /app
+
+# Install system dependencies
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    gcc \
+    postgresql-client \
+    libpq-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+# Copy requirements file and install dependencies
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+RUN python -c "import nltk; nltk.download('stopwords'); nltk.download('wordnet'); nltk.download('punkt')"
+
+# Copy application code
+COPY backend.py model_service.py ./
+COPY .env ./.env
+
+# Copy model file
+COPY crime_category_prediction_model.pkl ./
+
+# Expose the port the app runs on
+EXPOSE 5000
+
+
+# Command to run the application
+CMD ["python", "backend.py"] 

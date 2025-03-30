@@ -1,0 +1,51 @@
+services:
+  frontend:
+    build:
+      context: ./crime_app
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+    networks:
+      - crime-network
+    restart: unless-stopped
+    container_name: webui-frontend-1
+
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile.backend
+    ports:
+      - "5000:5000" 
+    depends_on:
+      - db
+    networks:
+      - crime-network
+    restart: unless-stopped
+    container_name: webui-backend-1
+
+  db:
+    image: postgis/postgis:latest
+    environment:
+      - POSTGRES_PASSWORD=1234
+      - POSTGRES_DB=crime_app
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=1234
+      - POSTGRES_HOST=db
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./db-init:/docker-entrypoint-initdb.d
+    networks:
+      - crime-network
+    restart: unless-stopped
+    container_name: webui-db-1
+
+networks:
+  crime-network:
+    name: crime-network
+    driver: bridge
+
+volumes:
+  postgres-data: 

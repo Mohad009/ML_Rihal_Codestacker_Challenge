@@ -1,0 +1,52 @@
+services:
+  frontend:
+    image: mohad009/crime-map-frontend:latest
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+    networks:
+      - crime-network
+    restart: unless-stopped
+
+  backend:
+    image: mohad009/crime-map-backend:latest
+    ports:
+      - "5000:5000" 
+    depends_on:
+      - db
+    environment:
+      - DB_USER=postgres
+      - DB_PASSWORD=1234
+      - DB_HOST=db
+      - DB_PORT=5432
+      - DB_NAME=crime_app
+      - API_PREFIX=/api
+      - CORS_ORIGINS=*
+      - MODEL_PATH=/app/crime_category_prediction_model.pkl
+    networks:
+      - crime-network
+    restart: unless-stopped
+
+  db:
+    image: mohad009/crime-map-db:latest
+    environment:
+      - POSTGRES_PASSWORD=1234
+      - POSTGRES_DB=crime_app
+      - POSTGRES_USER=postgres
+      - POSTGRES_HOST=db
+    ports:
+      - "5432:5432"
+    volumes:
+      - ../WebUI/db-init:/docker-entrypoint-initdb.d
+    networks:
+      - crime-network
+    restart: unless-stopped
+
+networks:
+  crime-network:
+    name: crime-network
+    driver: bridge
+
+volumes:
+  postgres-data:
