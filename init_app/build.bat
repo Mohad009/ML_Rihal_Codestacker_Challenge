@@ -3,11 +3,6 @@ SET FRONTEND_IMAGE=mohad009/crime-map-frontend:latest
 SET BACKEND_IMAGE=mohad009/crime-map-backend:latest
 SET DB_IMAGE=mohad009/crime-map-db:latest
 
-REM Function to check if an image exists locally
-:check_image_exists
-docker images -q %1 >nul 2>&1
-EXIT /B %ERRORLEVEL%
-
 echo Checking Docker images...
 
 REM Check and pull frontend image
@@ -60,3 +55,10 @@ echo Docker containers built and started successfully.
 
 echo Running containers:
 docker ps
+
+goto :eof
+
+REM Function to check if an image exists locally
+:check_image_exists
+docker images -q %1 >nul 2>&1
+EXIT /B %ERRORLEVEL%
