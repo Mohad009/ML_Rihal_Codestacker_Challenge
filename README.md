@@ -81,3 +81,6 @@ We welcome contributions to improve the application. Please fork the repository 
 ## Incomplete Features
 
 Please note that the integration of severity with the category prediction is currently incomplete. This feature is documented in the Jupyter notebook, but due to time constraints, it was not fully implemented or reviewed in the web application.
+
+## Demo
+This is a video showing how is the web app in case it did not work [demo](https://youtu.be/B6Ev5anNH10)
