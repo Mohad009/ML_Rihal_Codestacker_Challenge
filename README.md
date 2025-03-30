@@ -69,12 +69,6 @@ http://localhost:3000
 
 You should now see the Crime Map web application interface.
 
-## Troubleshooting
-
-- **Docker Not Running**: Ensure Docker is running on your device before executing the build scripts.
-- **Database Initialization**: If the application does not load, wait a few more minutes for the database to initialize, then refresh your browser.
-# Updated Troubleshooting Section
-
 Here's how you can update the troubleshooting section to include instructions for running the application locally if Docker does not work:
 
 ## Troubleshooting
