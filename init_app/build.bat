@@ -12,10 +12,10 @@ echo Checking Docker images...
 
 REM Check and pull frontend image
 call :check_image_exists %FRONTEND_IMAGE%
-IF ERRORLEVEL 1 (
+IF %ERRORLEVEL% NEQ 0 (
     echo Frontend image not found. Pulling from Docker Hub...
     docker pull %FRONTEND_IMAGE%
-    IF ERRORLEVEL 1 (
+    IF %ERRORLEVEL% NEQ 0 (
         echo Error pulling frontend image. Exiting.
         exit /b 1
     )
@@ -25,10 +25,10 @@ IF ERRORLEVEL 1 (
 
 REM Check and pull backend image
 call :check_image_exists %BACKEND_IMAGE%
-IF ERRORLEVEL 1 (
+IF %ERRORLEVEL% NEQ 0 (
     echo Backend image not found. Pulling from Docker Hub...
     docker pull %BACKEND_IMAGE%
-    IF ERRORLEVEL 1 (
+    IF %ERRORLEVEL% NEQ 0 (
         echo Error pulling backend image. Exiting.
         exit /b 1
     )
@@ -38,10 +38,10 @@ IF ERRORLEVEL 1 (
 
 REM Check and pull database image
 call :check_image_exists %DB_IMAGE%
-IF ERRORLEVEL 1 (
+IF %ERRORLEVEL% NEQ 0 (
     echo Database image not found. Pulling from Docker Hub...
     docker pull %DB_IMAGE%
-    IF ERRORLEVEL 1 (
+    IF %ERRORLEVEL% NEQ 0 (
         echo Error pulling database image. Exiting.
         exit /b 1
     )
@@ -51,7 +51,7 @@ IF ERRORLEVEL 1 (
 
 echo Building Docker containers...
 docker-compose up --build -d
-IF ERRORLEVEL 1 (
+IF %ERRORLEVEL% NEQ 0 (
     echo Error building Docker containers. Exiting.
     exit /b 1
 )
