@@ -3,45 +3,27 @@ SET FRONTEND_IMAGE=mohad009/crime-map-frontend:latest
 SET BACKEND_IMAGE=mohad009/crime-map-backend:latest
 SET DB_IMAGE=mohad009/crime-map-db:latest
 
-echo Checking Docker images...
+echo Pulling Docker images...
 
-REM Check and pull frontend image
-call :check_image_exists %FRONTEND_IMAGE%
+echo Pulling frontend image...
+docker pull %FRONTEND_IMAGE%
 IF %ERRORLEVEL% NEQ 0 (
-    echo Frontend image not found. Pulling from Docker Hub...
-    docker pull %FRONTEND_IMAGE%
-    IF %ERRORLEVEL% NEQ 0 (
-        echo Error pulling frontend image. Exiting.
-        exit /b 1
-    )
-) ELSE (
-    echo Frontend image already exists.
+    echo Error pulling frontend image. Exiting.
+    exit /b 1
 )
 
-REM Check and pull backend image
-call :check_image_exists %BACKEND_IMAGE%
+echo Pulling backend image...
+docker pull %BACKEND_IMAGE%
 IF %ERRORLEVEL% NEQ 0 (
-    echo Backend image not found. Pulling from Docker Hub...
-    docker pull %BACKEND_IMAGE%
-    IF %ERRORLEVEL% NEQ 0 (
-        echo Error pulling backend image. Exiting.
-        exit /b 1
-    )
-) ELSE (
-    echo Backend image already exists.
+    echo Error pulling backend image. Exiting.
+    exit /b 1
 )
 
-REM Check and pull database image
-call :check_image_exists %DB_IMAGE%
+echo Pulling database image...
+docker pull %DB_IMAGE%
 IF %ERRORLEVEL% NEQ 0 (
-    echo Database image not found. Pulling from Docker Hub...
-    docker pull %DB_IMAGE%
-    IF %ERRORLEVEL% NEQ 0 (
-        echo Error pulling database image. Exiting.
-        exit /b 1
-    )
-) ELSE (
-    echo Database image already exists.
+    echo Error pulling database image. Exiting.
+    exit /b 1
 )
 
 echo Building Docker containers...
