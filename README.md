@@ -73,10 +73,70 @@ You should now see the Crime Map web application interface.
 
 - **Docker Not Running**: Ensure Docker is running on your device before executing the build scripts.
 - **Database Initialization**: If the application does not load, wait a few more minutes for the database to initialize, then refresh your browser.
+# Updated Troubleshooting Section
 
-## Contributing
+Here's how you can update the troubleshooting section to include instructions for running the application locally if Docker does not work:
 
-We welcome contributions to improve the application. Please fork the repository and submit a pull request with your changes.
+## Troubleshooting
+
+- **Docker Not Running**: Ensure Docker is running on your device before executing the build scripts.
+- **Database Initialization**: If the application does not load, wait a few more minutes for the database to initialize, then refresh your browser.
+- **Running Locally Without Docker**: If Docker is not working, you can run the application locally by following these steps:
+
+### Running Locally Without Docker
+
+If you encounter issues with Docker, you can set up and run the application locally. Follow these steps:
+
+1. **Install PostgreSQL**: 
+   - Download and install PostgreSQL from [postgresql.org](https://www.postgresql.org/download/).
+   - Ensure you add PostgreSQL to your system's environment variables during installation.
+
+2. **Set Up the Backend and Frontend**:
+   - Open a terminal and navigate to the `WebUI` directory:
+     ```bash
+     cd ML_Rihal_Codestacker_Challenge/WebUI
+     ```
+   - Install the required Python packages:
+     ```bash
+     pip install -r requirements.txt
+     ```
+
+3. **Set Up the Frontend**:
+   - Open another terminal and navigate to the `crime_app` directory:
+     ```bash
+     cd ML_Rihal_Codestacker_Challenge/WebUI/crime_app
+     ```
+   - Install the necessary Node.js packages:
+     ```bash
+     npm install
+     ```
+
+4. **Restore the Database**:
+   - Open a third terminal and navigate to the `db-init` directory:
+     ```bash
+     cd ML_Rihal_Codestacker_Challenge/WebUI/db-init
+     ```
+   - Restore the database dump file:
+     ```bash
+     pg_restore -U postgres -d crime_app crime_data.dump
+     ```
+   - Ensure that PostgreSQL is running and that you have the correct database credentials.
+
+5. **Run the Application**:
+   - Start the backend server from the `WebUI` directory:
+     ```bash
+     python backend.py
+     ```
+   - Start the frontend server from the `crime_app` directory:
+     ```bash
+     npm start
+     ```
+
+6. **Access the Application**:
+   - Open your web browser and navigate to:
+     ```
+     http://localhost:3000
+     ```
 
 ## Incomplete Features
 
